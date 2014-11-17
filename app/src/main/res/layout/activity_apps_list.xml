@@ -4,11 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <ListView
+    <TextClock
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textClock"
+        android:layout_gravity="right" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Applications"
+        android:id="@+id/textView" />
+
+    <GridView
         android:id="@+id/apps_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+
+        android:columnWidth="90dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
         >
-    </ListView>
+    </GridView>
 
 </LinearLayout>

@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -16,18 +17,19 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
+import static mjay.launcher.R.layout.activity_apps_list;
 
 
 public class AppsListActivity extends Activity {
 
     List<AppDetail> apps;
-    ListView list;
+    GridView list;
     PackageManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_apps_list);
+        setContentView(activity_apps_list);
 
         loadApps();
         loadListView();
@@ -35,7 +37,8 @@ public class AppsListActivity extends Activity {
 
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                      | View.SYSTEM_UI_FLAG_FULLSCREEN;
+                      | View.SYSTEM_UI_FLAG_FULLSCREEN
+                      | View.SYSTEM_UI_FLAG_IMMERSIVE;
         decorView.setSystemUiVisibility(uiOptions);
 
     }
@@ -63,7 +66,7 @@ public class AppsListActivity extends Activity {
     public void loadListView(){
 
 
-        list = (ListView)findViewById(R.id.apps_list);
+        list = (GridView) findViewById(R.id.apps_list);
 
         ArrayAdapter<AppDetail> adapter = new ArrayAdapter<AppDetail>(this,
                 R.layout.list_item,
