@@ -38,7 +38,7 @@ public class AppsListActivity extends Activity {
         View decorView = getWindow().getDecorView();
         int uiOptions = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                       | View.SYSTEM_UI_FLAG_FULLSCREEN
-                      | View.SYSTEM_UI_FLAG_IMMERSIVE;
+                      | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY;
         decorView.setSystemUiVisibility(uiOptions);
 
     }
@@ -54,11 +54,12 @@ public class AppsListActivity extends Activity {
 
         List<ResolveInfo> availableActivities = manager.queryIntentActivities(i, 0);
         for (ResolveInfo ri : availableActivities) {
-            AppDetail app = new AppDetail();
-            app.label = ri.loadLabel(manager);
-            app.name = ri.activityInfo.packageName;
-            app.icon = ri.activityInfo.loadIcon(manager);
-            apps.add(app);
+            if (ri.activityInfo.packageName.contains("google")) {
+                AppDetail app = new AppDetail();
+                app.label = ri.loadLabel(manager);  
+                app.icon = ri.activityInfo.loadIcon(manager);
+                apps.add(app);
+            }
         }
     }
 
